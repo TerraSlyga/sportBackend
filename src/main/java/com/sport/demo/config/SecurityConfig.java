@@ -52,7 +52,7 @@ public class SecurityConfig {
 
                         // Всі інші запити на /auth/ (включаючи /me) вимагатимуть авторизації
                         // (або можна явно прописати .requestMatchers("/api/auth/me").authenticated())
-
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/api/events/**").permitAll() // Якщо це ще актуально
                         .anyRequest().authenticated()
                 )
@@ -66,7 +66,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         // Вкажи тут адресу свого React додатка!
-        configuration.setAllowedOrigins(List.of("http://localhost:4173"));
+        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         // ЦЕ НАЙВАЖЛИВІШЕ: дозволяє передавати Cookies (credentials)
